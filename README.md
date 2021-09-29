@@ -3,7 +3,7 @@
 Amneajynx
 ```
 ---
-## Listen to it:
+## Listen to Amneajynx:
 
 ---
 These are the most common places but if you can listen to music on the site you should be able to find Amneajynx.
@@ -18,7 +18,7 @@ https://amneajynx.bandcamp.com/music)
 https://soundcloud.com/amneajynx)
 
 ---
-## Own It:
+## Own Amneajynx:
 
 ---
 Again, these are the most common places but if you can buy music on the site you should be able to find Amneajynx.
@@ -36,7 +36,7 @@ Amazon:
 
 ---
 
-## Be Part of it
+## Be Part of Amneajynx:
 
 ---
 If you can't find Amneajynx on your favorite service let me know. Want to hear more of Amneajynx or see what events are happening? 
