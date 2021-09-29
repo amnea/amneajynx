@@ -1,7 +1,5 @@
 
-```
-Amneajynx
-```
+![Amneajynx logo](Video_logo.png)
 ---
 ## Listen to Amneajynx:
 
