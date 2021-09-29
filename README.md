@@ -6,6 +6,8 @@ Amneajynx
 ## Listen to it:
 
 ---
+These are the most common places but if you can listen to music on the site you should be able to find Amneajynx.
+
 
 [YouTube](https://youtube.com/channel/UCmKqzaoX6E8vRwDbby8Yt5Q)
 
@@ -19,6 +21,8 @@ https://soundcloud.com/amneajynx)
 ## Own It:
 
 ---
+Again, these are the most common places but if you can buy music on the site you should be able to find Amneajynx.
+
 
 iTunes:
 * [Without a Trace](https://music.apple.com/us/album/without-a-trace/1580192051)
@@ -35,6 +39,7 @@ Amazon:
 ## Be Part of it
 
 ---
+If you can't find Amneajynx on your favorite service let me know. Want to hear more of Amneajynx or see what events are happening? 
 
 [Facebook](https://www.facebook.com/amneajynx)
 
