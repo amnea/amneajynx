@@ -1,5 +1,5 @@
 
-![Amneajynx logo](Video_logo.png)
+![Amneajynx logo](/assets/title.png)
 ---
 ## Listen to Amneajynx:
 
