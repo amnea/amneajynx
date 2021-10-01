@@ -1,9 +1,7 @@
-@import "{{ site.theme }}";
-#forkme_banner{ display: none !important; }
+---
+---
 
-#downloads .btn {
-  display: none !important;
-}
+@import "{{ site.theme }}";
 
 footer {
   display: none !important;
@@ -11,5 +9,4 @@ footer {
 
 .btn {
   display: none !important;
-  state: disabled !important;
 }
