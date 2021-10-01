@@ -1,5 +1,9 @@
 @import "{{ site.theme }}";
-#forkme_banner{ display: none !important; }
+#forkme banner{ display: none !important; }
+
+#downloads .btn {
+  display: none !important;
+}
 
 footer {
   display: none !important;
