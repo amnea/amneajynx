@@ -1,5 +1,5 @@
 @import "{{ site.theme }}";
-#forkme banner{ display: none !important; }
+#forkme_banner{ display: none !important; }
 
 #downloads .btn {
   display: none !important;
@@ -11,8 +11,5 @@ footer {
 
 .btn {
   display: none !important;
-}
-
-.btn.btn-github {
-  display: none !important;
+  state: disabled !important;
 }
