@@ -6,7 +6,6 @@
 ---
 These are the most common places but if you can listen to music on the site you should be able to find Amneajynx.
 
-
 [YouTube](https://youtube.com/channel/UCmKqzaoX6E8vRwDbby8Yt5Q)
 
 [Bandcamp](
@@ -21,6 +20,8 @@ https://soundcloud.com/amneajynx)
 ---
 Again, these are the most common places but if you can buy music on the site you should be able to find Amneajynx.
 
+Hyper Follow
+* NEW SINGLE!! [Cimitery](https://distrokid.com/hyperfollow/amneajynx/cimitery-2) Out OCT 31st!
 
 iTunes:
 * [Without a Trace](https://music.apple.com/us/album/without-a-trace/1580192051)
