@@ -5,7 +5,7 @@
 ## Listen to Amneajynx:
 
 ---
-<div>These are the most</div> common places but if you can listen to music on the site you should be able to find Amneajynx.
+These are the most common places but if you can listen to music on the site you should be able to find Amneajynx.
 
 [YouTube](https://youtube.com/channel/UCmKqzaoX6E8vRwDbby8Yt5Q)
 
