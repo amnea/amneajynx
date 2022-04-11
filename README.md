@@ -22,7 +22,7 @@ https://soundcloud.com/amneajynx)
 Again, these are the most common places but if you can buy music on the site you should be able to find Amneajynx.
 
 Hyper Follow
-* NEW SINGLE!! [Cimitery](https://distrokid.com/hyperfollow/amneajynx/cimitery-2) Out OCT 31st!
+* A/B SINGLE!! [Cimitery](https://distrokid.com/hyperfollow/amneajynx/cimitery-2) 
 
 iTunes:
 * [Without a Trace](https://music.apple.com/us/album/without-a-trace/1580192051)
