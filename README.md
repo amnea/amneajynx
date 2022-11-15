@@ -5,7 +5,7 @@
 ## NEWS
 10/26/2022 : New Album out November 22nd 2022!! [Divide](https://distrokid.com/hyperfollow/amneajynx/divide)
 
-
+---
 ## The Name:
 (Am-knee-uh)
 amniotic + jinx
