@@ -44,3 +44,7 @@ If you can't find Amneajynx on your favorite service let me know. Want to hear m
 [Instagram](https://instagram.com/amneajynx/)
 
 [Twitter](https://twitter.com/amneajynx)
+
+<a href = "mailto: amneajynx@amneajynx.com">Send Email</a>
+
+
