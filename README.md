@@ -1,6 +1,14 @@
 
 ![Amneajynx logo](./assets/title.png)
+
+## The Name:
 (Am-knee-uh)
+amniotic + jinx
+
+**_amniotic fluid_** - the protective liquid the surrounds an unborn fetus
+
+**_jinx_** - popular superstition and folklore, is a curse or the attribute of attracting bad or negative luck
+
 ---
 ## NEWS
 10/26/2022 : New Album out November 22nd 2022!! [Divide](https://distrokid.com/hyperfollow/amneajynx/divide)
