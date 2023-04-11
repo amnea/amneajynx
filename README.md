@@ -26,11 +26,14 @@ Itunes, Apple Music, Amazon Music, Pandora, Spotify plus many more.
 
 [YouTube](https://www.youtube.com/@amneajynx)
 
-[Bandcamp](
-https://amneajynx.bandcamp.com/music)
+[//]: # ([Bandcamp]&#40;)
 
-[SoundCloud](
-https://soundcloud.com/amneajynx)
+[//]: # (https://amneajynx.bandcamp.com/music&#41;)
+
+[//]: # ()
+[//]: # ([SoundCloud]&#40;)
+
+[//]: # (https://soundcloud.com/amneajynx&#41;)
 
 ---
 
