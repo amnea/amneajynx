@@ -1,0 +1,15 @@
+# OS-specific files
+.DS_Store
+*.DS_Store
+.claude
+Thumbs.db
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Common build/dependency directories
+node_modules/
+target/
+build/
+*.log
