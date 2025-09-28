@@ -12,6 +12,7 @@
     --font-primary: 'Orbitron', monospace;
     --font-secondary: 'Share Tech Mono', monospace;
     --font-display: 'Creepster', cursive;
+    --font-scribble: 'Kalam', 'Caveat', cursive;
 
     --shadow-glow: 0 0 20px rgba(170, 68, 255, 0.5);
     --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.8);
@@ -300,9 +301,9 @@ body:before {
 }
 
 .hero-title {
-    font-family: var(--font-display);
+    font-family: var(--font-scribble);
     font-size: clamp(3rem, 8vw, 8rem);
-    font-weight: 900;
+    font-weight: 700;
     color: var(--color-light);
     text-shadow:
         0 0 10px var(--color-primary),
@@ -310,6 +311,8 @@ body:before {
         0 0 40px var(--color-primary);
     margin-bottom: 1rem;
     position: relative;
+    transform: rotate(-1deg);
+    letter-spacing: 3px;
 }
 
 .glitch {
