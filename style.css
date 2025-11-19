@@ -385,12 +385,9 @@ body::after {
     font-size: 2.5rem;
     color: var(--cream);
     animation: bounce 2s ease-in-out infinite;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.arrow-down:hover {
-    color: var(--accent);
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
 }
 
 @keyframes bounce {
