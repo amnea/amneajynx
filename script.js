@@ -1,198 +1,314 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('.header');
-    const glitchTitle = document.querySelector('.glitch');
-    const navLinks = document.querySelectorAll('.nav-link');
+// Little Whispers - Interactive Elements
 
-    let lastScrollY = window.scrollY;
+// Parallax effect on scroll
+let ticking = false;
+function updateParallax() {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.band-name, .tagline');
 
-    function updateHeader() {
-        const currentScrollY = window.scrollY;
+    parallaxElements.forEach(element => {
+        const speed = element.classList.contains('band-name') ? 0.5 : 0.3;
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
 
-        if (currentScrollY > 100) {
-            header.style.background = 'rgba(10, 10, 10, 0.98)';
-            header.style.backdropFilter = 'blur(15px)';
-        } else {
-            header.style.background = 'rgba(10, 10, 10, 0.95)';
-            header.style.backdropFilter = 'blur(10px)';
-        }
+    ticking = false;
+}
 
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-
-        lastScrollY = currentScrollY;
+function requestTick() {
+    if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
     }
+}
 
-    function smoothScroll(e) {
+window.addEventListener('scroll', requestTick);
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-
-        if (targetSection) {
-            const headerHeight = header.offsetHeight;
-            const targetPosition = targetSection.offsetTop - headerHeight;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-
-            navLinks.forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
         }
-    }
+    });
+});
 
-    function addActiveNavigation() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollY = window.pageYOffset;
+// Header background opacity on scroll
+const header = document.querySelector('.site-header');
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const maxScroll = 300;
+    const opacity = Math.min(scrolled / maxScroll, 1);
+    header.style.background = `linear-gradient(to bottom, rgba(26, 22, 18, ${0.9 + opacity * 0.1}), transparent)`;
+});
 
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 200;
-            const sectionId = section.getAttribute('id');
-            const correspondingNavLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+// Staggered animation for show cards
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
 
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                if (correspondingNavLink) {
-                    correspondingNavLink.classList.add('active');
-                }
-            }
-        });
-    }
-
-    function createParticles() {
-        const particlesContainer = document.createElement('div');
-        particlesContainer.className = 'particles-container';
-        particlesContainer.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        `;
-        document.body.appendChild(particlesContainer);
-
-        for (let i = 0; i < 50; i++) {
-            createParticle(particlesContainer);
-        }
-    }
-
-    function createParticle(container) {
-        const particle = document.createElement('div');
-        particle.style.cssText = `
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(255, 0, 0, 0.3);
-            border-radius: 50%;
-            animation: float ${Math.random() * 10 + 10}s linear infinite;
-        `;
-
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 10 + 's';
-
-        container.appendChild(particle);
-
-        setTimeout(() => {
-            particle.remove();
-            createParticle(container);
-        }, (Math.random() * 10 + 10) * 1000);
-    }
-
-    function addGlitchEffect() {
-        if (Math.random() < 0.1) {
-            glitchTitle.style.textShadow = `
-                2px 0 #ff0000,
-                -2px 0 #00ff00,
-                0 2px #0000ff,
-                0 -2px #ffff00,
-                0 0 10px rgba(255, 0, 0, 0.5),
-                0 0 20px rgba(255, 0, 0, 0.3),
-                0 0 40px rgba(255, 0, 0, 0.1)
-            `;
-
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
             setTimeout(() => {
-                glitchTitle.style.textShadow = `
-                    0 0 10px var(--color-primary),
-                    0 0 20px var(--color-primary),
-                    0 0 40px var(--color-primary)
-                `;
-            }, 100);
-        }
-    }
-
-    function handleIntersection(entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }
-
-    function initializeAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(handleIntersection, observerOptions);
-
-        const animatedElements = document.querySelectorAll('.about-content, .music-content, .connect-content');
-        animatedElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s ease';
-            observer.observe(el);
-        });
-    }
-
-    navLinks.forEach(link => {
-        if (link.getAttribute('href').startsWith('#')) {
-            link.addEventListener('click', smoothScroll);
+            }, index * 100);
         }
     });
+}, observerOptions);
 
-    window.addEventListener('scroll', () => {
-        updateHeader();
-        addActiveNavigation();
+// Apply observer to show cards
+document.addEventListener('DOMContentLoaded', () => {
+    const showCards = document.querySelectorAll('.show-card');
+    showCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
     });
-
-    setInterval(addGlitchEffect, 3000);
-
-    createParticles();
-    initializeAnimations();
-
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(${Math.random() * 100 - 50}px);
-                opacity: 0;
-            }
-        }
-
-        .nav-link.active {
-            color: var(--color-primary);
-            border-color: var(--color-primary);
-            text-shadow: 0 0 10px var(--color-primary);
-            box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.2);
-        }
-    `;
-    document.head.appendChild(style);
 });
+
+// Random atmospheric effect for background overlay - DISABLED to prevent darkening
+// const backgroundOverlay = document.querySelector('.background-overlay');
+// let atmosphereInterval;
+
+// function createAtmosphericEffect() {
+//     const effects = [
+//         'rgba(26, 22, 18, 0.7)',
+//         'rgba(26, 22, 18, 0.75)',
+//         'rgba(26, 22, 18, 0.8)',
+//         'rgba(26, 22, 18, 0.85)'
+//     ];
+
+//     atmosphereInterval = setInterval(() => {
+//         const randomEffect = effects[Math.floor(Math.random() * effects.length)];
+//         backgroundOverlay.style.background = `linear-gradient(to bottom, ${randomEffect} 0%, rgba(26, 22, 18, 0.85) 50%, rgba(26, 22, 18, 0.95) 100%)`;
+//     }, 5000);
+// }
+
+// createAtmosphericEffect();
+
+// Audio visualization placeholder (for future implementation)
+class AudioVisualizer {
+    constructor() {
+        this.isPlaying = false;
+    }
+
+    init() {
+        // Placeholder for audio visualization
+        console.log('Audio visualizer ready for implementation');
+    }
+}
+
+// Track list hover effect with sound wave animation
+const trackItems = document.querySelectorAll('.track-list li');
+trackItems.forEach(track => {
+    track.addEventListener('mouseenter', function() {
+        this.style.borderBottomColor = 'rgba(196, 181, 160, 0.5)';
+    });
+
+    track.addEventListener('mouseleave', function() {
+        this.style.borderBottomColor = 'rgba(196, 181, 160, 0.2)';
+    });
+});
+
+// CTA button ripple effect
+function createRipple(e) {
+    const button = e.currentTarget;
+    const ripple = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple');
+
+    button.appendChild(ripple);
+
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+document.querySelectorAll('.btn-primary, .btn-secondary, .btn-ticket').forEach(button => {
+    button.addEventListener('click', createRipple);
+    button.style.position = 'relative';
+    button.style.overflow = 'hidden';
+});
+
+// Add ripple animation style
+const style = document.createElement('style');
+style.textContent = `
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        transform: scale(0);
+        animation: rippleAnimation 0.6s ease-out;
+        pointer-events: none;
+    }
+
+    @keyframes rippleAnimation {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Logo rotation on hover with momentum
+const logo = document.querySelector('.logo');
+let rotationMomentum = 0;
+let isHovering = false;
+
+logo.addEventListener('mouseenter', () => {
+    isHovering = true;
+    rotationMomentum = 360;
+});
+
+logo.addEventListener('mouseleave', () => {
+    isHovering = false;
+});
+
+function animateLogo() {
+    if (!isHovering && rotationMomentum > 0) {
+        rotationMomentum -= 5;
+        logo.style.transform = `rotate(${rotationMomentum}deg)`;
+    }
+    requestAnimationFrame(animateLogo);
+}
+
+animateLogo();
+
+// Typewriter effect for tagline
+function typewriterEffect(element, text, speed = 100) {
+    let i = 0;
+    element.textContent = '';
+
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
+
+// Apply typewriter effect when tagline comes into view
+const taglineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.typed) {
+            const text = entry.target.textContent;
+            typewriterEffect(entry.target, text);
+            entry.target.dataset.typed = 'true';
+        }
+    });
+}, { threshold: 0.5 });
+
+const tagline = document.querySelector('.tagline');
+if (tagline) {
+    taglineObserver.observe(tagline);
+}
+
+// Timezone conversion for release date
+function convertReleaseTime() {
+    // Release date: January 20, 2026 at 12:00 AM EST (which is 05:00 UTC)
+    const releaseDate = new Date('2026-01-20T05:00:00Z');
+
+    // Get user's timezone
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // Format the date for the user's timezone
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZoneName: 'short'
+    };
+
+    const userTimeString = releaseDate.toLocaleString(undefined, options);
+
+    // Update the display
+    const userTimeElement = document.getElementById('user-time');
+    if (userTimeElement) {
+        // Only show user's time if it's different from EST
+        const estOptions = { ...options, timeZone: 'America/New_York' };
+        const estTimeString = releaseDate.toLocaleString(undefined, estOptions);
+
+        if (!userTimeString.includes('EST') && !userTimeString.includes('Eastern')) {
+            userTimeElement.textContent = `(${userTimeString} in your time)`;
+            userTimeElement.style.display = 'block';
+        } else {
+            userTimeElement.style.display = 'none';
+        }
+    }
+
+    // Add countdown timer
+    updateCountdown(releaseDate);
+}
+
+// Countdown timer
+function updateCountdown(releaseDate) {
+    const countdownElement = document.createElement('div');
+    countdownElement.className = 'countdown-timer';
+    countdownElement.id = 'countdown';
+
+    const releaseDateElement = document.querySelector('.release-date');
+    if (releaseDateElement && !document.getElementById('countdown')) {
+        releaseDateElement.appendChild(countdownElement);
+    }
+
+    function update() {
+        const now = new Date().getTime();
+        const distance = releaseDate.getTime() - now;
+
+        const countdownEl = document.getElementById('countdown');
+        if (!countdownEl) return;
+
+        if (distance > 0) {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownEl.innerHTML = `
+                <div class="countdown-label">Countdown</div>
+                <div class="countdown-display">
+                    <span class="countdown-unit">${days}d</span>
+                    <span class="countdown-unit">${hours}h</span>
+                    <span class="countdown-unit">${minutes}m</span>
+                    <span class="countdown-unit">${seconds}s</span>
+                </div>
+            `;
+        } else {
+            countdownEl.innerHTML = '<div class="countdown-label">Available Now!</div>';
+        }
+    }
+
+    update();
+    setInterval(update, 1000);
+}
+
+// Call timezone conversion when the page loads
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', convertReleaseTime);
+} else {
+    convertReleaseTime();
+}
+
+console.log('AMNEAJYNX - Little Whispers website loaded');
